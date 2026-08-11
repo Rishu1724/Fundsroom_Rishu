@@ -8,3 +8,5 @@ apps/backend/prisma/dev.db
 apps/backend/prisma/*.db
 apps/backend/prisma/migrations
 .DS_Store
+# Local Netlify folder
+.netlify
