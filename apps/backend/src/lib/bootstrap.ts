@@ -12,7 +12,11 @@ function runCommand(command: string) {
 }
 
 async function seedDatabase() {
-  runCommand('npx tsx prisma/seed.ts');
+  try {
+    runCommand('npx tsx prisma/seed.ts');
+  } catch (err) {
+    console.warn('[bootstrap] seed warning (continuing):', err instanceof Error ? err.message : String(err));
+  }
 }
 
 export async function bootstrapDatabase() {
@@ -21,11 +25,20 @@ export async function bootstrapDatabase() {
       try {
         await prisma.$connect();
         await prisma.user.count();
-      } catch {
-        runCommand('npx prisma db push --skip-generate');
+      } catch (err) {
+        console.info('[bootstrap] tables missing or unavailable — running prisma db push…');
+        try {
+          runCommand('npx prisma db push --skip-generate');
+        } catch (pushErr) {
+          console.warn('[bootstrap] db push warning:', pushErr instanceof Error ? pushErr.message : String(pushErr));
+        }
       }
 
-      await seedDatabase();
+      try {
+        await seedDatabase();
+      } catch (err) {
+        console.warn('[bootstrap] seed failed (continuing boot):', err instanceof Error ? err.message : String(err));
+      }
     })();
   }
 
