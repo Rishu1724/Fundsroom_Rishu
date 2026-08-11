@@ -92,12 +92,12 @@ export default function CustomersPage() {
             <tbody>
               {customers.map((customer) => (
                 <tr key={customer.id}>
-                  <td>{customer.name}</td>
+                  <td><strong>{customer.name}</strong></td>
                   <td>{customer.businessName}</td>
                   <td>{customer.mobile}</td>
-                  <td>{customer.customerType}</td>
-                  <td>{customer.status}</td>
-                  <td><Link to={`/customers/${customer.id}`}>View</Link></td>
+                  <td>{customer.customerType.charAt(0) + customer.customerType.slice(1).toLowerCase()}</td>
+                  <td><span className={`status-badge status-${customer.status.toLowerCase()}`}>{customer.status.toLowerCase()}</span></td>
+                  <td><Link to={`/customers/${customer.id}`}>View →</Link></td>
                 </tr>
               ))}
             </tbody>

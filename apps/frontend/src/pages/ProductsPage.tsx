@@ -61,15 +61,23 @@ export default function ProductsPage() {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
-                <tr key={product.id}>
-                  <td>{product.name}</td>
-                  <td>{product.sku}</td>
-                  <td>{product.category}</td>
-                  <td>{product.currentStock}</td>
-                  <td>{product.location}</td>
-                </tr>
-              ))}
+              {products.map((product) => {
+                const lowStock = product.currentStock <= product.minStockAlert;
+                return (
+                  <tr key={product.id}>
+                    <td><strong>{product.name}</strong></td>
+                    <td><code style={{ background: 'var(--panel-soft)', padding: '0.2rem 0.5rem', borderRadius: 6, fontSize: '0.82rem', border: '1px solid var(--line)' }}>{product.sku}</code></td>
+                    <td>{product.category}</td>
+                    <td>
+                      <span className={`status-badge ${lowStock ? 'status-inactive' : 'status-active'}`}>
+                        {product.currentStock} units
+                      </span>
+                      {lowStock ? <small style={{ color: 'var(--danger)', marginLeft: '0.5rem', fontSize: '0.75rem' }}>⚠ Below {product.minStockAlert}</small> : null}
+                    </td>
+                    <td>{product.location}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

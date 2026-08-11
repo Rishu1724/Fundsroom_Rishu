@@ -44,12 +44,20 @@ export default function CustomerDetailPage() {
         </div>
 
         <div className="detail-grid">
-          <div><strong>Mobile</strong><span>{customer.mobile}</span></div>
-          <div><strong>Email</strong><span>{customer.email ?? '-'}</span></div>
-          <div><strong>GST</strong><span>{customer.gstNumber ?? '-'}</span></div>
-          <div><strong>Status</strong><span>{customer.status}</span></div>
-          <div><strong>Type</strong><span>{customer.customerType}</span></div>
-          <div><strong>Follow-up</strong><span>{customer.followUpDate ?? '-'}</span></div>
+          <div><small>Mobile</small><strong>{customer.mobile}</strong></div>
+          <div><small>Email</small><strong>{customer.email ?? '-'}</strong></div>
+          <div><small>GST</small><strong>{customer.gstNumber ?? '-'}</strong></div>
+          <div><small>Status</small><span className={`status-badge status-${customer.status.toLowerCase()}`} style={{ width: 'fit-content' }}>{customer.status.toLowerCase()}</span></div>
+          <div><small>Type</small><strong>{customer.customerType.charAt(0) + customer.customerType.slice(1).toLowerCase()}</strong></div>
+          <div><small>Follow-up</small><strong>{customer.followUpDate ? new Date(customer.followUpDate).toLocaleDateString('en-IN') : '-'}</strong></div>
+        </div>
+        <div style={{ marginTop: '1rem' }}>
+          <div className="detail-grid">
+            <div style={{ gridColumn: '1 / -1' }}>
+              <small>Address</small>
+              <strong style={{ marginTop: '0.25rem', display: 'block' }}>{customer.address}</strong>
+            </div>
+          </div>
         </div>
       </section>
 

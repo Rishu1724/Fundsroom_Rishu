@@ -111,11 +111,11 @@ export default function ChallansPage() {
             <tbody>
               {challans.map((challan) => (
                 <tr key={challan.id}>
-                  <td>{challan.challanNumber}</td>
+                  <td><strong>{challan.challanNumber}</strong></td>
                   <td>{challan.customer?.name}</td>
-                  <td>{challan.status}</td>
+                  <td><span className={`status-badge status-${challan.status.toLowerCase()}`}>{challan.status.toLowerCase()}</span></td>
                   <td>{challan.totalQuantity}</td>
-                  <td>{challan.totalAmount}</td>
+                  <td>₹{Number(challan.totalAmount).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
                 </tr>
               ))}
             </tbody>
