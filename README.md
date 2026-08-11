@@ -70,6 +70,9 @@ The backend can also be deployed from `render.yaml`.
 - Publish directory: `apps/frontend/dist`
 - Environment variables:
   - `VITE_API_URL`
+  - `VITE_USE_MOCKS=false` for production
+
+Netlify also needs SPA routing support, which is already configured in `netlify.toml`.
 
 ## Test Users
 
@@ -81,4 +84,5 @@ Seeded users are created with password `Password123!` for all roles.
 - Challans store product snapshots to preserve pricing and item details at creation time.
 - The app is designed to be practical and extensible rather than over-engineered.
 - A Postman collection is included in `postman/Fundsroom ERP CRM.postman_collection.json`.# Fundsroom_Rishu
+# Fundsroom_Rishu
 # Fundsroom_Rishu
