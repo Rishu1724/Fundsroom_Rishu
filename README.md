@@ -1,88 +1,90 @@
-# Mini ERP + CRM Operations Portal
+# Fundsroom ERP + CRM
 
-This repository contains a full-stack mini ERP/CRM portal for a wholesale and distribution business.
+Fundsroom is a full-stack ERP and CRM portal for an Indian wholesale and distribution workflow. It is built to feel practical, fast, and human rather than template-like: customer follow-ups, stock control, GST-friendly records, and challan confirmation all live in one place.
 
-## Tech Stack
+## Live stack
 
-- Backend: Node.js, TypeScript, Express.js, Prisma
-- Database: PostgreSQL
-- Frontend: React, TypeScript, Vite
-- Deployment: Render for backend, Netlify for frontend
+- Frontend: React + TypeScript + Vite
+- Backend: Node.js + Express + TypeScript + Prisma
+- Database: PostgreSQL on Render
+- Hosting: Netlify frontend, Render backend
 
-## Features
+## Live URLs
 
-- JWT authentication with roles: Admin, Sales, Warehouse, Accounts
-- Customer CRM with search, detail view, and follow-up notes
-- Product and stock management with stock movement logs
-- Sales challans with draft/confirmed workflow and stock validation
-- Responsive admin-style UI
+- Backend API: https://fundsroom-rishu.onrender.com
+- Frontend: add the deployed Netlify URL in your team notes after publish
 
-## Local Setup
+## What the portal does
 
-1. Install dependencies:
+- Authenticates Admin, Sales, Warehouse, and Accounts users with JWT
+- Manages customers, notes, follow-up dates, and business details
+- Tracks products, stock levels, low-stock alerts, and warehouse location
+- Creates sales challans in draft or confirmed state
+- Reduces stock only when challans are confirmed
+- Stores challan snapshots so historical pricing stays accurate
+
+## Design direction
+
+- Warm Indian market-inspired palette with indigo, saffron, and sand tones
+- Layout written to feel like a real internal tool, not a default admin dashboard
+- Copy tuned for wholesalers, distributors, and warehouse teams
+
+## How to run locally
+
+1. Install dependencies.
 
 ```bash
 npm install
 ```
 
-2. Configure environment variables:
-
-- `apps/backend/.env`
-- `apps/frontend/.env`
-
-3. Create and migrate the database:
-
-```bash
-npm run db:generate -w @fundsroom/backend
-npm run db:push -w @fundsroom/backend
-npm run db:seed -w @fundsroom/backend
-```
-
-If you want local PostgreSQL via Docker, run:
-
-```bash
-docker compose up -d
-```
-
-4. Run both apps:
+2. Start the apps.
 
 ```bash
 npm run dev
 ```
 
-## Deployment
+The frontend is configured to use the Render backend by default, so it reads real database data instead of local mocks.
 
-### Backend on Render
+## Environment variables
+
+### Backend
+
+- `DATABASE_URL`
+- `JWT_SECRET`
+- `CORS_ORIGIN`
+- `PORT`
+
+### Frontend
+
+- `VITE_API_URL=https://fundsroom-rishu.onrender.com`
+- `VITE_USE_MOCKS=false`
+
+## Deployment notes
+
+### Render backend
 
 - Build command: `npm install && npm run build -w @fundsroom/backend`
-- Start command: `npm run start -w @fundsroom/backend`
-- Environment variables:
-  - `DATABASE_URL`
-  - `JWT_SECRET`
-  - `CORS_ORIGIN`
-  - `PORT`
+- Start command: `npm start`
+- The root `start` script pushes the Prisma schema, seeds initial data if needed, and then starts the backend service.
+- CORS allows localhost, Netlify, and Render origins.
 
-The backend can also be deployed from `render.yaml`.
-
-### Frontend on Netlify
+### Netlify frontend
 
 - Build command: `npm install && npm run build -w @fundsroom/frontend`
 - Publish directory: `apps/frontend/dist`
-- Environment variables:
-  - `VITE_API_URL`
-  - `VITE_USE_MOCKS=false` for production
+- SPA routing is configured in `netlify.toml`
 
-Netlify also needs SPA routing support, which is already configured in `netlify.toml`.
+## Seeded login accounts
 
-## Test Users
+All demo users use `Password123!`.
 
-Seeded users are created with password `Password123!` for all roles.
+- `admin@fundsroom.local`
+- `sales@fundsroom.local`
+- `warehouse@fundsroom.local`
+- `accounts@fundsroom.local`
 
-## Assumptions
+## Notes
 
 - PostgreSQL is the production database.
-- Challans store product snapshots to preserve pricing and item details at creation time.
-- The app is designed to be practical and extensible rather than over-engineered.
-- A Postman collection is included in `postman/Fundsroom ERP CRM.postman_collection.json`.# Fundsroom_Rishu
-# Fundsroom_Rishu
-# Fundsroom_Rishu
+- Challans store product snapshots to preserve history.
+- A Postman collection is available in `postman/Fundsroom ERP CRM.postman_collection.json`.

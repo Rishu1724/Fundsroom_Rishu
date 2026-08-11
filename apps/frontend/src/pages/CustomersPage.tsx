@@ -68,7 +68,8 @@ export default function CustomersPage() {
         <div className="section-header">
           <div>
             <div className="eyebrow">Customer CRM</div>
-            <h2>Customers</h2>
+            <h2>Customer register</h2>
+            <p>Search, update, and keep follow-ups current for wholesale and retail accounts.</p>
           </div>
           <form className="inline-form" onSubmit={handleSearchSubmit}>
             <input placeholder="Search customer" value={search} onChange={(event) => setSearch(event.target.value)} />
@@ -109,6 +110,7 @@ export default function CustomersPage() {
           <div>
             <div className="eyebrow">Add New</div>
             <h2>Create customer</h2>
+            <p>Track GST, business name, and follow-up dates in one place.</p>
           </div>
         </div>
         <form className="form-grid" onSubmit={handleSubmit}>

@@ -56,6 +56,7 @@ export default function ChallansPage() {
           <div>
             <div className="eyebrow">Sales Flow</div>
             <h2>Challans</h2>
+            <p>Create a draft first, then confirm only when stock is available.</p>
           </div>
         </div>
 

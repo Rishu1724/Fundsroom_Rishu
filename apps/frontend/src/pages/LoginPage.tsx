@@ -33,34 +33,59 @@ export default function LoginPage() {
 
   return (
     <div className="login-screen">
-      <div className="login-panel">
-        <div className="eyebrow">Wholesale Operations Portal</div>
-        <h1>Mini ERP + CRM for internal teams</h1>
-        <p>Sign in to manage customers, stock, sales challans, and follow-ups in one place.</p>
+      <div className="login-panel login-grid">
+        <section className="login-story">
+          <div className="eyebrow">Indian wholesale operations</div>
+          <h1>Control customers, challans, and stock from one clean workspace.</h1>
+          <p>
+            Built for distributors and internal teams that need fast follow-ups, accurate inventory,
+            and a simple flow from lead to confirmed sale.
+          </p>
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <label>
-            Email
-            <input value={email} onChange={(event) => setEmail(event.target.value)} />
-          </label>
-          <label>
-            Password
-            <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-          </label>
-          {error ? <div className="form-error">{error}</div> : null}
-          <button className="primary-button" disabled={loading} type="submit">
-            {loading ? 'Signing in...' : 'Sign in'}
-          </button>
-        </form>
+          <div className="hero-pills">
+            <span>GST-ready records</span>
+            <span>Live Render data</span>
+            <span>Stock-safe challans</span>
+          </div>
 
-        <div className="hint-box">
-          <strong>Demo credentials</strong>
-          <ul>
-            {demoAccounts.map((account) => (
-              <li key={account}>{account} / Password123!</li>
-            ))}
-          </ul>
-        </div>
+          <div className="story-card">
+            <div>
+              <strong>Test roles</strong>
+              <p>Admin, Sales, Warehouse, Accounts</p>
+            </div>
+            <div>
+              <strong>Best for</strong>
+              <p>Wholesale, trading, and distribution teams</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="login-form-wrap">
+          <form className="auth-form" onSubmit={handleSubmit}>
+            <div className="form-kicker">Sign in with your team account</div>
+            <label>
+              Email
+              <input value={email} onChange={(event) => setEmail(event.target.value)} />
+            </label>
+            <label>
+              Password
+              <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+            </label>
+            {error ? <div className="form-error">{error}</div> : null}
+            <button className="primary-button" disabled={loading} type="submit">
+              {loading ? 'Signing in...' : 'Enter portal'}
+            </button>
+          </form>
+
+          <div className="hint-box">
+            <strong>Demo credentials</strong>
+            <ul>
+              {demoAccounts.map((account) => (
+                <li key={account}>{account} / Password123!</li>
+              ))}
+            </ul>
+          </div>
+        </section>
       </div>
     </div>
   );

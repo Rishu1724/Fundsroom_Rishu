@@ -45,7 +45,8 @@ export default function ProductsPage() {
         <div className="section-header">
           <div>
             <div className="eyebrow">Inventory</div>
-            <h2>Products</h2>
+            <h2>Product register</h2>
+            <p>Live stock and pricing for the warehouse, sales, and accounts teams.</p>
           </div>
         </div>
         <div className="table-wrap">
@@ -79,6 +80,7 @@ export default function ProductsPage() {
           <div>
             <div className="eyebrow">Add Product</div>
             <h2>Create inventory item</h2>
+            <p>Capture SKU, location, alert level, and stock in a simple form.</p>
           </div>
         </div>
         <form className="form-grid" onSubmit={handleSubmit}>

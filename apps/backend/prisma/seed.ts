@@ -53,28 +53,29 @@ async function main() {
 
   const admin = await prisma.user.findUnique({ where: { email: 'admin@fundsroom.local' } });
   if (admin) {
-    await prisma.stockMovement.createMany({
-      data: [
-        {
+    const stockMovementCount = await prisma.stockMovement.count();
+    if (stockMovementCount === 0) {
+      await prisma.stockMovement.create({
+        data: {
           productId: product.id,
           quantityChanged: 120,
           movementType: MovementType.IN,
           reason: 'Initial stock load',
           createdById: admin.id
         }
-      ],
-      skipDuplicates: true
-    });
+      });
+    }
 
-    await prisma.customerNote.createMany({
-      data: [
-        {
+    const customerNoteCount = await prisma.customerNote.count();
+    if (customerNoteCount === 0) {
+      await prisma.customerNote.create({
+        data: {
           customerId: customer.id,
           note: 'Call back for renewal order this Friday.',
           createdById: admin.id
         }
-      ]
-    });
+      });
+    }
   }
 }
 

@@ -14,9 +14,12 @@ export default function Sidebar({ user, onLogout }: { user: User; onLogout: () =
 
   return (
     <aside className="sidebar">
-      <div>
-        <div className="brand">Fundsroom</div>
-        <div className="brand-subtitle">ERP + CRM Portal</div>
+      <div className="sidebar-top">
+        <div>
+          <div className="brand">Fundsroom</div>
+          <div className="brand-subtitle">Wholesale command desk</div>
+        </div>
+        <div className="sidebar-badge">Live data</div>
       </div>
 
       <nav className="nav-stack">
