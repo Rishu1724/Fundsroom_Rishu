@@ -290,6 +290,10 @@ textarea {
   align-items: stretch;
 }
 
+.login-panel.login-grid {
+  overflow: hidden;
+}
+
 .login-story,
 .login-form-wrap {
   display: grid;
@@ -298,6 +302,7 @@ textarea {
 
 .login-story {
   padding: 0.5rem 0.25rem;
+  min-width: 0;
 }
 
 .story-card {
@@ -320,12 +325,29 @@ textarea {
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.8);
+  min-width: 0;
 }
 
 .login-panel h1 {
   font-size: clamp(2rem, 3vw, 3.25rem);
   line-height: 1.05;
   max-width: 12ch;
+}
+
+.login-panel p,
+.login-panel h1,
+.login-panel h2,
+.login-panel .story-card,
+.login-panel .hint-box {
+  overflow-wrap: anywhere;
+}
+
+.form-error {
+  min-height: 1.25rem;
+}
+
+.auth-form input {
+  min-width: 0;
 }
 
 .section-header {
