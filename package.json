@@ -8,7 +8,6 @@
   "scripts": {
     "dev": "npm run dev -w @fundsroom/backend & npm run dev -w @fundsroom/frontend",
     "build": "npm run build -w @fundsroom/backend && npm run build -w @fundsroom/frontend",
-    "postinstall": "npm run generate -w @fundsroom/backend",
     "db:generate": "npm run generate -w @fundsroom/backend",
     "db:push": "npm run db:push -w @fundsroom/backend",
     "db:seed": "npm run db:seed -w @fundsroom/backend"
