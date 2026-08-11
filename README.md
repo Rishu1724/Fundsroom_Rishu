@@ -81,3 +81,4 @@ Seeded users are created with password `Password123!` for all roles.
 - Challans store product snapshots to preserve pricing and item details at creation time.
 - The app is designed to be practical and extensible rather than over-engineered.
 - A Postman collection is included in `postman/Fundsroom ERP CRM.postman_collection.json`.# Fundsroom_Rishu
+# Fundsroom_Rishu
