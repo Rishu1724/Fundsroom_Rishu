@@ -20,23 +20,32 @@ export async function apiRequest<T>(path: string, options: RequestInit = {}) {
     return mockRequest<T>(path, options);
   }
 
-  const headers = new Headers(options.headers);
-  headers.set('Content-Type', 'application/json');
+  try {
+    const headers = new Headers(options.headers);
+    headers.set('Content-Type', 'application/json');
 
-  const token = getToken();
-  if (token) {
-    headers.set('Authorization', `Bearer ${token}`);
+    const token = getToken();
+    if (token) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+
+    const response = await fetch(`${apiBaseUrl}${path}`, {
+      ...options,
+      headers
+    });
+
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(payload?.error?.message ?? 'Request failed');
+    }
+
+    return payload as T;
+  } catch (error) {
+    const isLocalBackend = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i.test(apiBaseUrl);
+    if (isLocalBackend) {
+      return mockRequest<T>(path, options);
+    }
+
+    throw error;
   }
-
-  const response = await fetch(`${apiBaseUrl}${path}`, {
-    ...options,
-    headers
-  });
-
-  const payload = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    throw new Error(payload?.error?.message ?? 'Request failed');
-  }
-
-  return payload as T;
 }
